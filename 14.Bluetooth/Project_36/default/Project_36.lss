@@ -1,0 +1,645 @@
+
+Project_36.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002fe  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000018  00800060  000002fe  00000372  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .debug_aranges 00000020  00000000  00000000  0000038a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 00000053  00000000  00000000  000003aa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000301  00000000  00000000  000003fd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000198  00000000  00000000  000006fe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000266  00000000  00000000  00000896  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000060  00000000  00000000  00000afc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000000c6  00000000  00000000  00000b5c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    000000e0  00000000  00000000  00000c22  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000108  00000000  00000000  00000d02  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee ef       	ldi	r30, 0xFE	; 254
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a8 37       	cpi	r26, 0x78	; 120
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a8 e7       	ldi	r26, 0x78	; 120
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a8 37       	cpi	r26, 0x78	; 120
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 77 00 	call	0xee	; 0xee <main>
+  8a:	0c 94 7d 01 	jmp	0x2fa	; 0x2fa <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+00000092 <usart_init>:
+#define F_CPU 8000000UL
+#include<avr/io.h>
+#include<util/delay.h>
+void usart_init()
+{
+  92:	83 e3       	ldi	r24, 0x33	; 51
+  94:	89 b9       	out	0x09, r24	; 9
+ UBRRL=51;
+ UBRRH=0;
+  96:	10 bc       	out	0x20, r1	; 32
+ UCSRB=0x18;
+  98:	88 e1       	ldi	r24, 0x18	; 24
+  9a:	8a b9       	out	0x0a, r24	; 10
+ UCSRC=0x8e;
+  9c:	8e e8       	ldi	r24, 0x8E	; 142
+  9e:	80 bd       	out	0x20, r24	; 32
+}
+  a0:	08 95       	ret
+
+000000a2 <usart_rec>:
+char usart_rec()
+{
+  a2:	5f 9b       	sbis	0x0b, 7	; 11
+  a4:	fe cf       	rjmp	.-4      	; 0xa2 <usart_rec>
+ while((UCSRA&0x80)==0);
+ return UDR;
+  a6:	8c b1       	in	r24, 0x0c	; 12
+}
+  a8:	08 95       	ret
+
+000000aa <usart_send>:
+void usart_send(char send)
+{
+  aa:	5d 9b       	sbis	0x0b, 5	; 11
+  ac:	fe cf       	rjmp	.-4      	; 0xaa <usart_send>
+  while((UCSRA&0x20)==0);
+  UDR=send;
+  ae:	8c b9       	out	0x0c, r24	; 12
+}
+  b0:	08 95       	ret
+
+000000b2 <str_cmp>:
+ // function for compare 
+int str_cmp(char *arr1,char *arr2) 
+{
+  b2:	40 e0       	ldi	r20, 0x00	; 0
+  b4:	50 e0       	ldi	r21, 0x00	; 0
+  b6:	20 e0       	ldi	r18, 0x00	; 0
+  b8:	30 e0       	ldi	r19, 0x00	; 0
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+  ba:	fc 01       	movw	r30, r24
+  bc:	e2 0f       	add	r30, r18
+  be:	f3 1f       	adc	r31, r19
+  c0:	a0 81       	ld	r26, Z
+  c2:	a3 32       	cpi	r26, 0x23	; 35
+  c4:	91 f0       	breq	.+36     	; 0xea <str_cmp+0x38>
+  c6:	fb 01       	movw	r30, r22
+  c8:	e2 0f       	add	r30, r18
+  ca:	f3 1f       	adc	r31, r19
+  cc:	e0 81       	ld	r30, Z
+  ce:	e3 32       	cpi	r30, 0x23	; 35
+  d0:	61 f0       	breq	.+24     	; 0xea <str_cmp+0x38>
+		 {
+		   return count;
+		 }
+         if(arr1[i]==arr2[i])
+  d2:	ae 17       	cp	r26, r30
+  d4:	41 f4       	brne	.+16     	; 0xe6 <str_cmp+0x34>
+}
+ // function for compare 
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+  d6:	2f 5f       	subi	r18, 0xFF	; 255
+  d8:	3f 4f       	sbci	r19, 0xFF	; 255
+  da:	41 e0       	ldi	r20, 0x01	; 1
+  dc:	50 e0       	ldi	r21, 0x00	; 0
+  de:	2c 30       	cpi	r18, 0x0C	; 12
+  e0:	31 05       	cpc	r19, r1
+  e2:	59 f7       	brne	.-42     	; 0xba <str_cmp+0x8>
+  e4:	08 95       	ret
+		 {
+		      count=0;
+			  return count;
+		 }
+   }
+}
+  e6:	40 e0       	ldi	r20, 0x00	; 0
+  e8:	50 e0       	ldi	r21, 0x00	; 0
+  ea:	ca 01       	movw	r24, r20
+  ec:	08 95       	ret
+
+000000ee <main>:
+int main()
+{ 
+  ee:	2f 92       	push	r2
+  f0:	3f 92       	push	r3
+  f2:	4f 92       	push	r4
+  f4:	5f 92       	push	r5
+  f6:	6f 92       	push	r6
+  f8:	7f 92       	push	r7
+  fa:	8f 92       	push	r8
+  fc:	9f 92       	push	r9
+  fe:	af 92       	push	r10
+ 100:	bf 92       	push	r11
+ 102:	cf 92       	push	r12
+ 104:	df 92       	push	r13
+ 106:	ef 92       	push	r14
+ 108:	ff 92       	push	r15
+ 10a:	0f 93       	push	r16
+ 10c:	1f 93       	push	r17
+ 10e:	df 93       	push	r29
+ 110:	cf 93       	push	r28
+ 112:	cd b7       	in	r28, 0x3d	; 61
+ 114:	de b7       	in	r29, 0x3e	; 62
+ 116:	a0 97       	sbiw	r28, 0x20	; 32
+ 118:	0f b6       	in	r0, 0x3f	; 63
+ 11a:	f8 94       	cli
+ 11c:	de bf       	out	0x3e, r29	; 62
+ 11e:	0f be       	out	0x3f, r0	; 63
+ 120:	cd bf       	out	0x3d, r28	; 61
+   char a[12],b[4]="*on#",c[5]="*off#",d[5]="*Fon#",e[6]="*Foff#";
+ 122:	80 91 60 00 	lds	r24, 0x0060
+ 126:	90 91 61 00 	lds	r25, 0x0061
+ 12a:	a0 91 62 00 	lds	r26, 0x0062
+ 12e:	b0 91 63 00 	lds	r27, 0x0063
+ 132:	89 83       	std	Y+1, r24	; 0x01
+ 134:	9a 83       	std	Y+2, r25	; 0x02
+ 136:	ab 83       	std	Y+3, r26	; 0x03
+ 138:	bc 83       	std	Y+4, r27	; 0x04
+ 13a:	de 01       	movw	r26, r28
+ 13c:	15 96       	adiw	r26, 0x05	; 5
+ 13e:	e5 e6       	ldi	r30, 0x65	; 101
+ 140:	f0 e0       	ldi	r31, 0x00	; 0
+ 142:	85 e0       	ldi	r24, 0x05	; 5
+ 144:	01 90       	ld	r0, Z+
+ 146:	0d 92       	st	X+, r0
+ 148:	81 50       	subi	r24, 0x01	; 1
+ 14a:	e1 f7       	brne	.-8      	; 0x144 <main+0x56>
+ 14c:	de 01       	movw	r26, r28
+ 14e:	1a 96       	adiw	r26, 0x0a	; 10
+ 150:	eb e6       	ldi	r30, 0x6B	; 107
+ 152:	f0 e0       	ldi	r31, 0x00	; 0
+ 154:	85 e0       	ldi	r24, 0x05	; 5
+ 156:	01 90       	ld	r0, Z+
+ 158:	0d 92       	st	X+, r0
+ 15a:	81 50       	subi	r24, 0x01	; 1
+ 15c:	e1 f7       	brne	.-8      	; 0x156 <main+0x68>
+ 15e:	de 01       	movw	r26, r28
+ 160:	1f 96       	adiw	r26, 0x0f	; 15
+ 162:	e1 e7       	ldi	r30, 0x71	; 113
+ 164:	f0 e0       	ldi	r31, 0x00	; 0
+ 166:	86 e0       	ldi	r24, 0x06	; 6
+ 168:	01 90       	ld	r0, Z+
+ 16a:	0d 92       	st	X+, r0
+ 16c:	81 50       	subi	r24, 0x01	; 1
+ 16e:	e1 f7       	brne	.-8      	; 0x168 <main+0x7a>
+   DDRC=0xff;
+ 170:	8f ef       	ldi	r24, 0xFF	; 255
+ 172:	84 bb       	out	0x14, r24	; 20
+#define F_CPU 8000000UL
+#include<avr/io.h>
+#include<util/delay.h>
+void usart_init()
+{
+ UBRRL=51;
+ 174:	83 e3       	ldi	r24, 0x33	; 51
+ 176:	89 b9       	out	0x09, r24	; 9
+ UBRRH=0;
+ 178:	10 bc       	out	0x20, r1	; 32
+ UCSRB=0x18;
+ 17a:	88 e1       	ldi	r24, 0x18	; 24
+ 17c:	8a b9       	out	0x0a, r24	; 10
+ UCSRC=0x8e;
+ 17e:	8e e8       	ldi	r24, 0x8E	; 142
+ 180:	80 bd       	out	0x20, r24	; 32
+ 182:	be 01       	movw	r22, r28
+ 184:	6b 5e       	subi	r22, 0xEB	; 235
+ 186:	7f 4f       	sbci	r23, 0xFF	; 255
+   DDRC=0xff;
+   usart_init();
+while(1)
+{
+int i,k=0,count=0;
+   for(i=0;i<12;i++)
+ 188:	31 e2       	ldi	r19, 0x21	; 33
+ 18a:	83 2e       	mov	r8, r19
+ 18c:	91 2c       	mov	r9, r1
+ 18e:	8c 0e       	add	r8, r28
+ 190:	9d 1e       	adc	r9, r29
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+ 192:	25 e0       	ldi	r18, 0x05	; 5
+ 194:	22 2e       	mov	r2, r18
+ 196:	31 2c       	mov	r3, r1
+ 198:	2c 0e       	add	r2, r28
+ 19a:	3d 1e       	adc	r3, r29
+        PORTC=0b00000000;
+   } 
+   count=str_cmp(a,d); //for fan on
+   if(count==1)
+   {
+        PORTC=0b00001000;
+ 19c:	9a e0       	ldi	r25, 0x0A	; 10
+ 19e:	49 2e       	mov	r4, r25
+ 1a0:	51 2c       	mov	r5, r1
+ 1a2:	4c 0e       	add	r4, r28
+ 1a4:	5d 1e       	adc	r5, r29
+ 1a6:	58 e0       	ldi	r21, 0x08	; 8
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+ 1a8:	8f e0       	ldi	r24, 0x0F	; 15
+ 1aa:	68 2e       	mov	r6, r24
+ 1ac:	71 2c       	mov	r7, r1
+ 1ae:	6c 0e       	add	r6, r28
+ 1b0:	7d 1e       	adc	r7, r29
+ 1b2:	02 c0       	rjmp	.+4      	; 0x1b8 <main+0xca>
+void usart_init()
+{
+ UBRRL=51;
+ UBRRH=0;
+ UCSRB=0x18;
+ UCSRC=0x8e;
+ 1b4:	00 e0       	ldi	r16, 0x00	; 0
+ 1b6:	10 e0       	ldi	r17, 0x00	; 0
+ 1b8:	db 01       	movw	r26, r22
+ 1ba:	fb 01       	movw	r30, r22
+}
+char usart_rec()
+{
+ while((UCSRA&0x80)==0);
+ 1bc:	5f 9b       	sbis	0x0b, 7	; 11
+ 1be:	fe cf       	rjmp	.-4      	; 0x1bc <main+0xce>
+ return UDR;
+ 1c0:	8c b1       	in	r24, 0x0c	; 12
+while(1)
+{
+int i,k=0,count=0;
+   for(i=0;i<12;i++)
+   {
+        a[i]=usart_rec();
+ 1c2:	80 83       	st	Z, r24
+		k++;
+	    if(a[i]==0x23)
+ 1c4:	83 32       	cpi	r24, 0x23	; 35
+ 1c6:	21 f0       	breq	.+8      	; 0x1d0 <main+0xe2>
+	    {
+	        break;
+ 1c8:	31 96       	adiw	r30, 0x01	; 1
+   DDRC=0xff;
+   usart_init();
+while(1)
+{
+int i,k=0,count=0;
+   for(i=0;i<12;i++)
+ 1ca:	e8 15       	cp	r30, r8
+ 1cc:	f9 05       	cpc	r31, r9
+ 1ce:	b1 f7       	brne	.-20     	; 0x1bc <main+0xce>
+	        break;
+	    }	 
+   }  
+   for(i=0;i<12;i++)
+   {
+         usart_send(a[i]);
+ 1d0:	8c 91       	ld	r24, X
+ while((UCSRA&0x80)==0);
+ return UDR;
+}
+void usart_send(char send)
+{
+  while((UCSRA&0x20)==0);
+ 1d2:	5d 9b       	sbis	0x0b, 5	; 11
+ 1d4:	fe cf       	rjmp	.-4      	; 0x1d2 <main+0xe4>
+  UDR=send;
+ 1d6:	8c b9       	out	0x0c, r24	; 12
+	    }	 
+   }  
+   for(i=0;i<12;i++)
+   {
+         usart_send(a[i]);
+	    if(a[i]==0x23)
+ 1d8:	83 32       	cpi	r24, 0x23	; 35
+ 1da:	21 f0       	breq	.+8      	; 0x1e4 <main+0xf6>
+	   {
+	        break;
+ 1dc:	11 96       	adiw	r26, 0x01	; 1
+	    if(a[i]==0x23)
+	    {
+	        break;
+	    }	 
+   }  
+   for(i=0;i<12;i++)
+ 1de:	a8 15       	cp	r26, r8
+ 1e0:	b9 05       	cpc	r27, r9
+ 1e2:	b1 f7       	brne	.-20     	; 0x1d0 <main+0xe2>
+ 1e4:	80 e0       	ldi	r24, 0x00	; 0
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+ 1e8:	20 e0       	ldi	r18, 0x00	; 0
+ 1ea:	30 e0       	ldi	r19, 0x00	; 0
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+ 1ec:	fb 01       	movw	r30, r22
+ 1ee:	e8 0f       	add	r30, r24
+ 1f0:	f9 1f       	adc	r31, r25
+ 1f2:	40 81       	ld	r20, Z
+ 1f4:	43 32       	cpi	r20, 0x23	; 35
+ 1f6:	a9 f0       	breq	.+42     	; 0x222 <main+0x134>
+ 1f8:	e1 e0       	ldi	r30, 0x01	; 1
+ 1fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fc:	ec 0f       	add	r30, r28
+ 1fe:	fd 1f       	adc	r31, r29
+ 200:	e8 0f       	add	r30, r24
+ 202:	f9 1f       	adc	r31, r25
+ 204:	e0 81       	ld	r30, Z
+ 206:	e3 32       	cpi	r30, 0x23	; 35
+ 208:	61 f0       	breq	.+24     	; 0x222 <main+0x134>
+		 {
+		   return count;
+		 }
+         if(arr1[i]==arr2[i])
+ 20a:	4e 17       	cp	r20, r30
+ 20c:	19 f0       	breq	.+6      	; 0x214 <main+0x126>
+ 20e:	aa 24       	eor	r10, r10
+ 210:	bb 24       	eor	r11, r11
+ 212:	0e c0       	rjmp	.+28     	; 0x230 <main+0x142>
+}
+ // function for compare 
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+ 214:	01 96       	adiw	r24, 0x01	; 1
+ 216:	21 e0       	ldi	r18, 0x01	; 1
+ 218:	30 e0       	ldi	r19, 0x00	; 0
+ 21a:	8c 30       	cpi	r24, 0x0C	; 12
+ 21c:	91 05       	cpc	r25, r1
+ 21e:	31 f7       	brne	.-52     	; 0x1ec <main+0xfe>
+ 220:	01 c0       	rjmp	.+2      	; 0x224 <main+0x136>
+ 222:	59 01       	movw	r10, r18
+	   {
+	        break;
+	   }	 
+   }
+   count=str_cmp(a,b);//for ligt on
+   if(count==1)
+ 224:	81 e0       	ldi	r24, 0x01	; 1
+ 226:	a8 16       	cp	r10, r24
+ 228:	b1 04       	cpc	r11, r1
+ 22a:	11 f4       	brne	.+4      	; 0x230 <main+0x142>
+   {
+      PORTC=0b00000001;
+ 22c:	81 e0       	ldi	r24, 0x01	; 1
+ 22e:	85 bb       	out	0x15, r24	; 21
+ 230:	80 e0       	ldi	r24, 0x00	; 0
+ 232:	90 e0       	ldi	r25, 0x00	; 0
+ 234:	20 e0       	ldi	r18, 0x00	; 0
+ 236:	30 e0       	ldi	r19, 0x00	; 0
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+ 238:	fb 01       	movw	r30, r22
+ 23a:	e8 0f       	add	r30, r24
+ 23c:	f9 1f       	adc	r31, r25
+ 23e:	40 81       	ld	r20, Z
+ 240:	43 32       	cpi	r20, 0x23	; 35
+ 242:	91 f0       	breq	.+36     	; 0x268 <main+0x17a>
+ 244:	f1 01       	movw	r30, r2
+ 246:	e8 0f       	add	r30, r24
+ 248:	f9 1f       	adc	r31, r25
+ 24a:	e0 81       	ld	r30, Z
+ 24c:	e3 32       	cpi	r30, 0x23	; 35
+ 24e:	61 f0       	breq	.+24     	; 0x268 <main+0x17a>
+		 {
+		   return count;
+		 }
+         if(arr1[i]==arr2[i])
+ 250:	4e 17       	cp	r20, r30
+ 252:	19 f0       	breq	.+6      	; 0x25a <main+0x16c>
+ 254:	cc 24       	eor	r12, r12
+ 256:	dd 24       	eor	r13, r13
+ 258:	0d c0       	rjmp	.+26     	; 0x274 <main+0x186>
+}
+ // function for compare 
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+ 25a:	01 96       	adiw	r24, 0x01	; 1
+ 25c:	21 e0       	ldi	r18, 0x01	; 1
+ 25e:	30 e0       	ldi	r19, 0x00	; 0
+ 260:	8c 30       	cpi	r24, 0x0C	; 12
+ 262:	91 05       	cpc	r25, r1
+ 264:	49 f7       	brne	.-46     	; 0x238 <main+0x14a>
+ 266:	01 c0       	rjmp	.+2      	; 0x26a <main+0x17c>
+ 268:	69 01       	movw	r12, r18
+   if(count==1)
+   {
+      PORTC=0b00000001;
+   }   
+   count=str_cmp(a,c); //for light off
+   if(count==1)
+ 26a:	81 e0       	ldi	r24, 0x01	; 1
+ 26c:	c8 16       	cp	r12, r24
+ 26e:	d1 04       	cpc	r13, r1
+ 270:	09 f4       	brne	.+2      	; 0x274 <main+0x186>
+   {
+        PORTC=0b00000000;
+ 272:	15 ba       	out	0x15, r1	; 21
+ 274:	80 e0       	ldi	r24, 0x00	; 0
+ 276:	90 e0       	ldi	r25, 0x00	; 0
+ 278:	20 e0       	ldi	r18, 0x00	; 0
+ 27a:	30 e0       	ldi	r19, 0x00	; 0
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+ 27c:	fb 01       	movw	r30, r22
+ 27e:	e8 0f       	add	r30, r24
+ 280:	f9 1f       	adc	r31, r25
+ 282:	40 81       	ld	r20, Z
+ 284:	43 32       	cpi	r20, 0x23	; 35
+ 286:	91 f0       	breq	.+36     	; 0x2ac <main+0x1be>
+ 288:	f2 01       	movw	r30, r4
+ 28a:	e8 0f       	add	r30, r24
+ 28c:	f9 1f       	adc	r31, r25
+ 28e:	e0 81       	ld	r30, Z
+ 290:	e3 32       	cpi	r30, 0x23	; 35
+ 292:	61 f0       	breq	.+24     	; 0x2ac <main+0x1be>
+		 {
+		   return count;
+		 }
+         if(arr1[i]==arr2[i])
+ 294:	4e 17       	cp	r20, r30
+ 296:	19 f0       	breq	.+6      	; 0x29e <main+0x1b0>
+ 298:	ee 24       	eor	r14, r14
+ 29a:	ff 24       	eor	r15, r15
+ 29c:	0d c0       	rjmp	.+26     	; 0x2b8 <main+0x1ca>
+}
+ // function for compare 
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+ 29e:	01 96       	adiw	r24, 0x01	; 1
+ 2a0:	21 e0       	ldi	r18, 0x01	; 1
+ 2a2:	30 e0       	ldi	r19, 0x00	; 0
+ 2a4:	8c 30       	cpi	r24, 0x0C	; 12
+ 2a6:	91 05       	cpc	r25, r1
+ 2a8:	49 f7       	brne	.-46     	; 0x27c <main+0x18e>
+ 2aa:	01 c0       	rjmp	.+2      	; 0x2ae <main+0x1c0>
+ 2ac:	79 01       	movw	r14, r18
+   if(count==1)
+   {
+        PORTC=0b00000000;
+   } 
+   count=str_cmp(a,d); //for fan on
+   if(count==1)
+ 2ae:	81 e0       	ldi	r24, 0x01	; 1
+ 2b0:	e8 16       	cp	r14, r24
+ 2b2:	f1 04       	cpc	r15, r1
+ 2b4:	09 f4       	brne	.+2      	; 0x2b8 <main+0x1ca>
+   {
+        PORTC=0b00001000;
+ 2b6:	55 bb       	out	0x15, r21	; 21
+ 2b8:	80 e0       	ldi	r24, 0x00	; 0
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	20 e0       	ldi	r18, 0x00	; 0
+ 2be:	30 e0       	ldi	r19, 0x00	; 0
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+   {
+         if(arr1[i]==0x23||arr2[i]==0x23)
+ 2c0:	fb 01       	movw	r30, r22
+ 2c2:	e8 0f       	add	r30, r24
+ 2c4:	f9 1f       	adc	r31, r25
+ 2c6:	40 81       	ld	r20, Z
+ 2c8:	43 32       	cpi	r20, 0x23	; 35
+ 2ca:	81 f0       	breq	.+32     	; 0x2ec <main+0x1fe>
+ 2cc:	f3 01       	movw	r30, r6
+ 2ce:	e8 0f       	add	r30, r24
+ 2d0:	f9 1f       	adc	r31, r25
+ 2d2:	e0 81       	ld	r30, Z
+ 2d4:	e3 32       	cpi	r30, 0x23	; 35
+ 2d6:	51 f0       	breq	.+20     	; 0x2ec <main+0x1fe>
+		 {
+		   return count;
+		 }
+         if(arr1[i]==arr2[i])
+ 2d8:	4e 17       	cp	r20, r30
+ 2da:	09 f0       	breq	.+2      	; 0x2de <main+0x1f0>
+ 2dc:	6b cf       	rjmp	.-298    	; 0x1b4 <main+0xc6>
+}
+ // function for compare 
+int str_cmp(char *arr1,char *arr2) 
+{
+ int count=0;
+  for(int i=0;i<12;i++)
+ 2de:	01 96       	adiw	r24, 0x01	; 1
+ 2e0:	21 e0       	ldi	r18, 0x01	; 1
+ 2e2:	30 e0       	ldi	r19, 0x00	; 0
+ 2e4:	8c 30       	cpi	r24, 0x0C	; 12
+ 2e6:	91 05       	cpc	r25, r1
+ 2e8:	59 f7       	brne	.-42     	; 0x2c0 <main+0x1d2>
+ 2ea:	01 c0       	rjmp	.+2      	; 0x2ee <main+0x200>
+ 2ec:	89 01       	movw	r16, r18
+   if(count==1)
+   {
+        PORTC=0b00001000;
+   } 
+   count=str_cmp(a,e); //for fan off
+   if(count==1)
+ 2ee:	01 30       	cpi	r16, 0x01	; 1
+ 2f0:	11 05       	cpc	r17, r1
+ 2f2:	09 f0       	breq	.+2      	; 0x2f6 <main+0x208>
+ 2f4:	61 cf       	rjmp	.-318    	; 0x1b8 <main+0xca>
+   {
+        PORTC=0b00000000;
+ 2f6:	15 ba       	out	0x15, r1	; 21
+ 2f8:	5f cf       	rjmp	.-322    	; 0x1b8 <main+0xca>
+
+000002fa <_exit>:
+ 2fa:	f8 94       	cli
+
+000002fc <__stop_program>:
+ 2fc:	ff cf       	rjmp	.-2      	; 0x2fc <__stop_program>

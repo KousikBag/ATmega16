@@ -1,0 +1,10 @@
+
+1 - Copiar os arquivos da Pasta \LIBRARY
+    para
+    X:\ProgramData\Labcenter Electronics\Proteus 8 Professional\LIBRARY\
+
+2 - Copiar os arquivos da Pasta \MODELS
+    para
+    X:\ProgramData\Labcenter Electronics\Proteus 8 Professional\MODELS
+	
+	

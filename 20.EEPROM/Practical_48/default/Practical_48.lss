@@ -1,0 +1,665 @@
+
+Practical_48.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002de  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000001a  00800060  000002de  00000352  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .debug_aranges 00000020  00000000  00000000  0000036c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 00000081  00000000  00000000  0000038c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000005d0  00000000  00000000  0000040d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000001b7  00000000  00000000  000009dd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000004f7  00000000  00000000  00000b94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000090  00000000  00000000  0000108c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000012a  00000000  00000000  0000111c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000023d  00000000  00000000  00001246  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000078  00000000  00000000  00001483  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee ed       	ldi	r30, 0xDE	; 222
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	aa 37       	cpi	r26, 0x7A	; 122
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	aa e7       	ldi	r26, 0x7A	; 122
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	aa 37       	cpi	r26, 0x7A	; 122
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 ca 00 	call	0x194	; 0x194 <main>
+  8a:	0c 94 6d 01 	jmp	0x2da	; 0x2da <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <lcd_command>:
+	lcd_command(0x0c);
+	lcd_command(0x01);
+}
+
+void lcd_command(unsigned char com)	   //command function
+{
+  92:	28 2f       	mov	r18, r24
+  94:	20 7f       	andi	r18, 0xF0	; 240
+  96:	25 bb       	out	0x15, r18	; 21
+
+	lcd = com & 0xF0;	//send higher bit	
+
+	lcd &= ~(1<<rs); 	//rs =0
+  98:	a8 98       	cbi	0x15, 0	; 21
+	lcd &= ~(1<<rw);	//rw =0	
+  9a:	a9 98       	cbi	0x15, 1	; 21
+	lcd |=(1<<en);		//en =1		
+  9c:	aa 9a       	sbi	0x15, 2	; 21
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  9e:	20 ed       	ldi	r18, 0xD0	; 208
+  a0:	37 e0       	ldi	r19, 0x07	; 7
+  a2:	f9 01       	movw	r30, r18
+  a4:	31 97       	sbiw	r30, 0x01	; 1
+  a6:	f1 f7       	brne	.-4      	; 0xa4 <lcd_command+0x12>
+	_delay_ms(1);
+	lcd &= ~(1<<en);	//en =0	
+  a8:	aa 98       	cbi	0x15, 2	; 21
+  aa:	f9 01       	movw	r30, r18
+  ac:	31 97       	sbiw	r30, 0x01	; 1
+  ae:	f1 f7       	brne	.-4      	; 0xac <lcd_command+0x1a>
+	_delay_ms(1);
+
+	lcd = (com<<4) & 0xF0;  //send lower bit	
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	44 e0       	ldi	r20, 0x04	; 4
+  b4:	88 0f       	add	r24, r24
+  b6:	99 1f       	adc	r25, r25
+  b8:	4a 95       	dec	r20
+  ba:	e1 f7       	brne	.-8      	; 0xb4 <lcd_command+0x22>
+  bc:	85 bb       	out	0x15, r24	; 21
+
+	lcd &= ~(1<<rs); 	//rs =0		
+  be:	a8 98       	cbi	0x15, 0	; 21
+	lcd &= ~(1<<rw);	//rw =0
+  c0:	a9 98       	cbi	0x15, 1	; 21
+	lcd |=(1<<en);		//en =1		
+  c2:	aa 9a       	sbi	0x15, 2	; 21
+  c4:	c9 01       	movw	r24, r18
+  c6:	01 97       	sbiw	r24, 0x01	; 1
+  c8:	f1 f7       	brne	.-4      	; 0xc6 <lcd_command+0x34>
+	_delay_ms(1);
+	lcd &= ~(1<<en);	//en =0
+  ca:	aa 98       	cbi	0x15, 2	; 21
+  cc:	c9 01       	movw	r24, r18
+  ce:	01 97       	sbiw	r24, 0x01	; 1
+  d0:	f1 f7       	brne	.-4      	; 0xce <lcd_command+0x3c>
+	_delay_ms(1);
+}
+  d2:	08 95       	ret
+
+000000d4 <lcd_init>:
+#define lcd PORTC
+#define rs 0
+#define rw 1
+#define en 2
+void lcd_init()						//lcd initialization function
+{
+  d4:	82 e0       	ldi	r24, 0x02	; 2
+  d6:	90 e0       	ldi	r25, 0x00	; 0
+  d8:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	lcd_command(0x02);
+ 	lcd_command(0x28);
+  dc:	88 e2       	ldi	r24, 0x28	; 40
+  de:	90 e0       	ldi	r25, 0x00	; 0
+  e0:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	lcd_command(0x06);
+  e4:	86 e0       	ldi	r24, 0x06	; 6
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	lcd_command(0x0c);
+  ec:	8c e0       	ldi	r24, 0x0C	; 12
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	lcd_command(0x01);
+  f4:	81 e0       	ldi	r24, 0x01	; 1
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+}
+  fc:	08 95       	ret
+
+000000fe <lcd_data>:
+	lcd &= ~(1<<en);	//en =0
+	_delay_ms(1);
+}
+
+void lcd_data(unsigned char value)   //data function
+{
+  fe:	28 2f       	mov	r18, r24
+ 100:	20 7f       	andi	r18, 0xF0	; 240
+ 102:	25 bb       	out	0x15, r18	; 21
+
+	lcd =value & 0xF0;	 //send higher bit	
+
+	lcd |= (1<<rs); 	//rs =1	
+ 104:	a8 9a       	sbi	0x15, 0	; 21
+	lcd &= ~(1<<rw);	//rw =0	
+ 106:	a9 98       	cbi	0x15, 1	; 21
+	lcd |=(1<<en);		//en =1		
+ 108:	aa 9a       	sbi	0x15, 2	; 21
+ 10a:	20 ed       	ldi	r18, 0xD0	; 208
+ 10c:	37 e0       	ldi	r19, 0x07	; 7
+ 10e:	f9 01       	movw	r30, r18
+ 110:	31 97       	sbiw	r30, 0x01	; 1
+ 112:	f1 f7       	brne	.-4      	; 0x110 <lcd_data+0x12>
+	_delay_ms(1);
+	lcd &= ~(1<<en);	//en =0	
+ 114:	aa 98       	cbi	0x15, 2	; 21
+ 116:	f9 01       	movw	r30, r18
+ 118:	31 97       	sbiw	r30, 0x01	; 1
+ 11a:	f1 f7       	brne	.-4      	; 0x118 <lcd_data+0x1a>
+	_delay_ms(1);
+
+
+	lcd =(value<<4) & 0xF0;	 //send lower bit
+ 11c:	90 e0       	ldi	r25, 0x00	; 0
+ 11e:	54 e0       	ldi	r21, 0x04	; 4
+ 120:	88 0f       	add	r24, r24
+ 122:	99 1f       	adc	r25, r25
+ 124:	5a 95       	dec	r21
+ 126:	e1 f7       	brne	.-8      	; 0x120 <lcd_data+0x22>
+ 128:	85 bb       	out	0x15, r24	; 21
+
+	lcd |= (1<<rs); 	//rs =1	
+ 12a:	a8 9a       	sbi	0x15, 0	; 21
+	lcd &= ~(1<<rw);	//rw =0
+ 12c:	a9 98       	cbi	0x15, 1	; 21
+	lcd |=(1<<en);		//en =1		
+ 12e:	aa 9a       	sbi	0x15, 2	; 21
+ 130:	c9 01       	movw	r24, r18
+ 132:	01 97       	sbiw	r24, 0x01	; 1
+ 134:	f1 f7       	brne	.-4      	; 0x132 <lcd_data+0x34>
+	_delay_ms(1);		
+	lcd &= ~(1<<en);	//en =0	
+ 136:	aa 98       	cbi	0x15, 2	; 21
+ 138:	c9 01       	movw	r24, r18
+ 13a:	01 97       	sbiw	r24, 0x01	; 1
+ 13c:	f1 f7       	brne	.-4      	; 0x13a <lcd_data+0x3c>
+	_delay_ms(1);
+	
+}
+ 13e:	08 95       	ret
+
+00000140 <lcd_string>:
+
+
+void lcd_string(unsigned char *a)    //lcd string function
+{
+ 140:	cf 93       	push	r28
+ 142:	df 93       	push	r29
+ 144:	ec 01       	movw	r28, r24
+ 146:	03 c0       	rjmp	.+6      	; 0x14e <lcd_string+0xe>
+    while(*a!='\0')
+	{
+	 lcd_data(*a);
+ 148:	0e 94 7f 00 	call	0xfe	; 0xfe <lcd_data>
+	 a++;
+ 14c:	21 96       	adiw	r28, 0x01	; 1
+}
+
+
+void lcd_string(unsigned char *a)    //lcd string function
+{
+    while(*a!='\0')
+ 14e:	88 81       	ld	r24, Y
+ 150:	88 23       	and	r24, r24
+ 152:	d1 f7       	brne	.-12     	; 0x148 <lcd_string+0x8>
+	{
+	 lcd_data(*a);
+	 a++;
+    }
+}
+ 154:	df 91       	pop	r29
+ 156:	cf 91       	pop	r28
+ 158:	08 95       	ret
+
+0000015a <lcd_num>:
+
+void lcd_num(unsigned int num)
+{
+ 15a:	cf 93       	push	r28
+ 15c:	df 93       	push	r29
+ 15e:	ec 01       	movw	r28, r24
+	lcd_command(0x04);
+ 160:	84 e0       	ldi	r24, 0x04	; 4
+ 162:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+ 166:	0e c0       	rjmp	.+28     	; 0x184 <lcd_num+0x2a>
+	unsigned int i;
+	while(num!=0)
+	{
+		i=num%10;
+		lcd_data(i+48);
+ 168:	ce 01       	movw	r24, r28
+ 16a:	6a e0       	ldi	r22, 0x0A	; 10
+ 16c:	70 e0       	ldi	r23, 0x00	; 0
+ 16e:	0e 94 59 01 	call	0x2b2	; 0x2b2 <__udivmodhi4>
+ 172:	80 5d       	subi	r24, 0xD0	; 208
+ 174:	0e 94 7f 00 	call	0xfe	; 0xfe <lcd_data>
+		num=num/10;
+ 178:	ce 01       	movw	r24, r28
+ 17a:	6a e0       	ldi	r22, 0x0A	; 10
+ 17c:	70 e0       	ldi	r23, 0x00	; 0
+ 17e:	0e 94 59 01 	call	0x2b2	; 0x2b2 <__udivmodhi4>
+ 182:	eb 01       	movw	r28, r22
+
+void lcd_num(unsigned int num)
+{
+	lcd_command(0x04);
+	unsigned int i;
+	while(num!=0)
+ 184:	20 97       	sbiw	r28, 0x00	; 0
+ 186:	81 f7       	brne	.-32     	; 0x168 <lcd_num+0xe>
+	{
+		i=num%10;
+		lcd_data(i+48);
+		num=num/10;
+	}
+	lcd_command(0x06);
+ 188:	86 e0       	ldi	r24, 0x06	; 6
+ 18a:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+}
+ 18e:	df 91       	pop	r29
+ 190:	cf 91       	pop	r28
+ 192:	08 95       	ret
+
+00000194 <main>:
+void EEPROM_write(char address,char data);
+char EEPROM_read(char address);
+
+
+int main(void)
+{
+ 194:	bf 92       	push	r11
+ 196:	cf 92       	push	r12
+ 198:	df 92       	push	r13
+ 19a:	ef 92       	push	r14
+ 19c:	ff 92       	push	r15
+ 19e:	0f 93       	push	r16
+ 1a0:	1f 93       	push	r17
+ 1a2:	cf 93       	push	r28
+ 1a4:	df 93       	push	r29
+	
+	DDRC=0xFF;
+ 1a6:	8f ef       	ldi	r24, 0xFF	; 255
+ 1a8:	84 bb       	out	0x14, r24	; 20
+	lcd_init();
+ 1aa:	0e 94 6a 00 	call	0xd4	; 0xd4 <lcd_init>
+	lcd_command(0x01);
+ 1ae:	81 e0       	ldi	r24, 0x01	; 1
+ 1b0:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+ 1b4:	88 ee       	ldi	r24, 0xE8	; 232
+ 1b6:	93 e0       	ldi	r25, 0x03	; 3
+ 1b8:	28 ec       	ldi	r18, 0xC8	; 200
+ 1ba:	30 e0       	ldi	r19, 0x00	; 0
+ 1bc:	f9 01       	movw	r30, r18
+ 1be:	31 97       	sbiw	r30, 0x01	; 1
+ 1c0:	f1 f7       	brne	.-4      	; 0x1be <main+0x2a>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 1c2:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 1c4:	d9 f7       	brne	.-10     	; 0x1bc <main+0x28>
+ 1c6:	c8 ec       	ldi	r28, 0xC8	; 200
+ 1c8:	d0 e0       	ldi	r29, 0x00	; 0
+}
+
+void EEPROM_write(char address,char data)
+{
+  while( EECR & (1<< EEWE));//Wait For Completion Of Previous Write
+     EEAR=address;
+ 1ca:	e0 e1       	ldi	r30, 0x10	; 16
+ 1cc:	ee 2e       	mov	r14, r30
+ 1ce:	f1 2c       	mov	r15, r1
+     EEDR= data;
+ 1d0:	71 e4       	ldi	r23, 0x41	; 65
+ 1d2:	b7 2e       	mov	r11, r23
+}
+
+void EEPROM_write(char address,char data)
+{
+  while( EECR & (1<< EEWE));//Wait For Completion Of Previous Write
+     EEAR=address;
+ 1d4:	61 e1       	ldi	r22, 0x11	; 17
+ 1d6:	c6 2e       	mov	r12, r22
+ 1d8:	d1 2c       	mov	r13, r1
+     EEDR= data;
+ 1da:	02 e4       	ldi	r16, 0x42	; 66
+	lcd_init();
+	lcd_command(0x01);
+	_delay_ms(100);
+	while(1)
+    {
+	 lcd_command(0x81);
+ 1dc:	81 e8       	ldi	r24, 0x81	; 129
+ 1de:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	 lcd_string("EEPROM");
+ 1e2:	80 e6       	ldi	r24, 0x60	; 96
+ 1e4:	90 e0       	ldi	r25, 0x00	; 0
+ 1e6:	0e 94 a0 00 	call	0x140	; 0x140 <lcd_string>
+ 1ea:	80 e1       	ldi	r24, 0x10	; 16
+ 1ec:	97 e2       	ldi	r25, 0x27	; 39
+ 1ee:	fe 01       	movw	r30, r28
+ 1f0:	31 97       	sbiw	r30, 0x01	; 1
+ 1f2:	f1 f7       	brne	.-4      	; 0x1f0 <main+0x5c>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 1f4:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 1f6:	d9 f7       	brne	.-10     	; 0x1ee <main+0x5a>
+	 _delay_ms(1000);
+	 lcd_command(0x01);
+ 1f8:	81 e0       	ldi	r24, 0x01	; 1
+ 1fa:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+    }
+}
+
+void EEPROM_write(char address,char data)
+{
+  while( EECR & (1<< EEWE));//Wait For Completion Of Previous Write
+ 1fe:	e1 99       	sbic	0x1c, 1	; 28
+ 200:	fe cf       	rjmp	.-4      	; 0x1fe <main+0x6a>
+     EEAR=address;
+ 202:	ff ba       	out	0x1f, r15	; 31
+ 204:	ee ba       	out	0x1e, r14	; 30
+     EEDR= data;
+ 206:	bd ba       	out	0x1d, r11	; 29
+     EECR|= (1<< EEMWE);
+ 208:	e2 9a       	sbi	0x1c, 2	; 28
+     EECR|=(1<< EEWE);//Set EEPROM by setting EEWE to 1
+ 20a:	e1 9a       	sbi	0x1c, 1	; 28
+    
+}
+ char EEPROM_read(char address)
+{
+  while(!(EECR & (1<< EEWE)));//Wait For Completion Of Previous Write
+ 20c:	e1 9b       	sbis	0x1c, 1	; 28
+ 20e:	fe cf       	rjmp	.-4      	; 0x20c <main+0x78>
+     EEAR=address;
+ 210:	ff ba       	out	0x1f, r15	; 31
+ 212:	ee ba       	out	0x1e, r14	; 30
+     EECR|=(1<< EERE);//Set EEPROM for read by setting EERE to 1
+ 214:	e0 9a       	sbi	0x1c, 0	; 28
+     return EEDR;
+ 216:	1d b3       	in	r17, 0x1d	; 29
+	 lcd_string("EEPROM");
+	 _delay_ms(1000);
+	 lcd_command(0x01);
+     EEPROM_write(0x10,0x41);//To write character A on the given address 0x10 "65-Ascii Value for A in hexa 0x41"
+	 char c= EEPROM_read(0x10);//To read it from EEPROM
+	 lcd_command(0x85);
+ 218:	85 e8       	ldi	r24, 0x85	; 133
+ 21a:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	 lcd_data(c);//To display the read character 'A' stored in EEPROM on LCD 
+ 21e:	81 2f       	mov	r24, r17
+ 220:	0e 94 7f 00 	call	0xfe	; 0xfe <lcd_data>
+ 224:	80 e1       	ldi	r24, 0x10	; 16
+ 226:	97 e2       	ldi	r25, 0x27	; 39
+ 228:	fe 01       	movw	r30, r28
+ 22a:	31 97       	sbiw	r30, 0x01	; 1
+ 22c:	f1 f7       	brne	.-4      	; 0x22a <main+0x96>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 22e:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 230:	d9 f7       	brne	.-10     	; 0x228 <main+0x94>
+    }
+}
+
+void EEPROM_write(char address,char data)
+{
+  while( EECR & (1<< EEWE));//Wait For Completion Of Previous Write
+ 232:	e1 99       	sbic	0x1c, 1	; 28
+ 234:	fe cf       	rjmp	.-4      	; 0x232 <main+0x9e>
+     EEAR=address;
+ 236:	df ba       	out	0x1f, r13	; 31
+ 238:	ce ba       	out	0x1e, r12	; 30
+     EEDR= data;
+ 23a:	0d bb       	out	0x1d, r16	; 29
+     EECR|= (1<< EEMWE);
+ 23c:	e2 9a       	sbi	0x1c, 2	; 28
+     EECR|=(1<< EEWE);//Set EEPROM by setting EEWE to 1
+ 23e:	e1 9a       	sbi	0x1c, 1	; 28
+    
+}
+ char EEPROM_read(char address)
+{
+  while(!(EECR & (1<< EEWE)));//Wait For Completion Of Previous Write
+ 240:	e1 9b       	sbis	0x1c, 1	; 28
+ 242:	fe cf       	rjmp	.-4      	; 0x240 <main+0xac>
+     EEAR=address;
+ 244:	ff ba       	out	0x1f, r15	; 31
+ 246:	ee ba       	out	0x1e, r14	; 30
+     EECR|=(1<< EERE);//Set EEPROM for read by setting EERE to 1
+ 248:	e0 9a       	sbi	0x1c, 0	; 28
+     return EEDR;
+ 24a:	1d b3       	in	r17, 0x1d	; 29
+	 lcd_data(c);//To display the read character 'A' stored in EEPROM on LCD 
+	 _delay_ms(1000);
+
+	 EEPROM_write(0x11,0x42);//To write character B on the given address 0x10 "65-Ascii Value for B in hexa 0x42"
+	 char b= EEPROM_read(0x10);//To read it from EEPROM
+	 lcd_command(0x85);
+ 24c:	85 e8       	ldi	r24, 0x85	; 133
+ 24e:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	 lcd_data(b);//To display the read character 'B' stored in EEPROM on LCD 
+ 252:	81 2f       	mov	r24, r17
+ 254:	0e 94 7f 00 	call	0xfe	; 0xfe <lcd_data>
+ 258:	80 e1       	ldi	r24, 0x10	; 16
+ 25a:	97 e2       	ldi	r25, 0x27	; 39
+ 25c:	fe 01       	movw	r30, r28
+ 25e:	31 97       	sbiw	r30, 0x01	; 1
+ 260:	f1 f7       	brne	.-4      	; 0x25e <main+0xca>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 262:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 264:	d9 f7       	brne	.-10     	; 0x25c <main+0xc8>
+	 _delay_ms(1000);
+	 lcd_command(0x01);
+ 266:	81 e0       	ldi	r24, 0x01	; 1
+ 268:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	 lcd_command(0xC0);
+ 26c:	80 ec       	ldi	r24, 0xC0	; 192
+ 26e:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+	 lcd_string("EEPROM SUCCESSFUL");
+ 272:	87 e6       	ldi	r24, 0x67	; 103
+ 274:	90 e0       	ldi	r25, 0x00	; 0
+ 276:	0e 94 a0 00 	call	0x140	; 0x140 <lcd_string>
+ 27a:	80 e1       	ldi	r24, 0x10	; 16
+ 27c:	97 e2       	ldi	r25, 0x27	; 39
+ 27e:	fe 01       	movw	r30, r28
+ 280:	31 97       	sbiw	r30, 0x01	; 1
+ 282:	f1 f7       	brne	.-4      	; 0x280 <main+0xec>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 284:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 286:	d9 f7       	brne	.-10     	; 0x27e <main+0xea>
+	
+	 _delay_ms(1000);
+	  lcd_command(0x01);
+ 288:	81 e0       	ldi	r24, 0x01	; 1
+ 28a:	0e 94 49 00 	call	0x92	; 0x92 <lcd_command>
+ 28e:	a6 cf       	rjmp	.-180    	; 0x1dc <main+0x48>
+
+00000290 <EEPROM_write>:
+	    //TODO:: Please write your application code 
+    }
+}
+
+void EEPROM_write(char address,char data)
+{
+ 290:	e1 99       	sbic	0x1c, 1	; 28
+ 292:	fe cf       	rjmp	.-4      	; 0x290 <EEPROM_write>
+  while( EECR & (1<< EEWE));//Wait For Completion Of Previous Write
+     EEAR=address;
+ 294:	90 e0       	ldi	r25, 0x00	; 0
+ 296:	9f bb       	out	0x1f, r25	; 31
+ 298:	8e bb       	out	0x1e, r24	; 30
+     EEDR= data;
+ 29a:	6d bb       	out	0x1d, r22	; 29
+     EECR|= (1<< EEMWE);
+ 29c:	e2 9a       	sbi	0x1c, 2	; 28
+     EECR|=(1<< EEWE);//Set EEPROM by setting EEWE to 1
+ 29e:	e1 9a       	sbi	0x1c, 1	; 28
+    
+}
+ 2a0:	08 95       	ret
+
+000002a2 <EEPROM_read>:
+ char EEPROM_read(char address)
+{
+ 2a2:	e1 9b       	sbis	0x1c, 1	; 28
+ 2a4:	fe cf       	rjmp	.-4      	; 0x2a2 <EEPROM_read>
+  while(!(EECR & (1<< EEWE)));//Wait For Completion Of Previous Write
+     EEAR=address;
+ 2a6:	90 e0       	ldi	r25, 0x00	; 0
+ 2a8:	9f bb       	out	0x1f, r25	; 31
+ 2aa:	8e bb       	out	0x1e, r24	; 30
+     EECR|=(1<< EERE);//Set EEPROM for read by setting EERE to 1
+ 2ac:	e0 9a       	sbi	0x1c, 0	; 28
+     return EEDR;
+ 2ae:	8d b3       	in	r24, 0x1d	; 29
+}
+ 2b0:	08 95       	ret
+
+000002b2 <__udivmodhi4>:
+ 2b2:	aa 1b       	sub	r26, r26
+ 2b4:	bb 1b       	sub	r27, r27
+ 2b6:	51 e1       	ldi	r21, 0x11	; 17
+ 2b8:	07 c0       	rjmp	.+14     	; 0x2c8 <__udivmodhi4_ep>
+
+000002ba <__udivmodhi4_loop>:
+ 2ba:	aa 1f       	adc	r26, r26
+ 2bc:	bb 1f       	adc	r27, r27
+ 2be:	a6 17       	cp	r26, r22
+ 2c0:	b7 07       	cpc	r27, r23
+ 2c2:	10 f0       	brcs	.+4      	; 0x2c8 <__udivmodhi4_ep>
+ 2c4:	a6 1b       	sub	r26, r22
+ 2c6:	b7 0b       	sbc	r27, r23
+
+000002c8 <__udivmodhi4_ep>:
+ 2c8:	88 1f       	adc	r24, r24
+ 2ca:	99 1f       	adc	r25, r25
+ 2cc:	5a 95       	dec	r21
+ 2ce:	a9 f7       	brne	.-22     	; 0x2ba <__udivmodhi4_loop>
+ 2d0:	80 95       	com	r24
+ 2d2:	90 95       	com	r25
+ 2d4:	bc 01       	movw	r22, r24
+ 2d6:	cd 01       	movw	r24, r26
+ 2d8:	08 95       	ret
+
+000002da <_exit>:
+ 2da:	f8 94       	cli
+
+000002dc <__stop_program>:
+ 2dc:	ff cf       	rjmp	.-2      	; 0x2dc <__stop_program>

@@ -1,0 +1,15 @@
+bool d1 = HIGH;
+bool d2 = LOW;
+
+void setup() {
+  pinMode(4, OUTPUT);  //Motor control pin 1 //
+  pinMode(7, OUTPUT); // Motor control pin 2 //
+}
+
+void loop() {
+
+//Motor ON.//
+  
+  digitalWrite(4,d1); 
+  digitalWrite(7,d2);   
+}
